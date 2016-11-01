@@ -92,7 +92,7 @@ class Github(object):
         userlist = self.getUserList(thePage)
         for i in range(len(userlist)):
             time.sleep(1)
-            print "正在第"+ str(page) +"页关注：" + userlist[i] + " Token：" + tokenlist[i]
+            print "In page"+ str(page) +",following the user: " + userlist[i] + " Token：" + tokenlist[i]
             self.followUser(tokenlist[i],userlist[i])
 
 default_encoding = 'utf-8'
@@ -112,4 +112,4 @@ gt.login()
 # range内是页数
 for i in range(1,5):
     gt.listFollow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
-print "结束啦"
+print "Done."
