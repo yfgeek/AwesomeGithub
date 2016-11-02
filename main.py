@@ -3,9 +3,9 @@
 # Automatically follow a lot of Github users which copy from a fixed user
 # The first line of comments is English version
 # The second line of comments is Chinese version
-# They have the same meaning.Don't be confused.
+# They have the same meaning.Don't be confused
 # Welcome to pull request
-# Enjoy.
+# Enjoy!
 # Site:github.com/yfgeek
 
 import os
@@ -129,7 +129,7 @@ gt = Github('username','password')
 # 登录
 gt.login()
 
-# range 1,5 is the page of follower page
+# range 1,100 is the page of follower page
 # range内是页数
 for i in range(1,100):
     gt.listFollow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
