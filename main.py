@@ -1,6 +1,12 @@
 #-*- coding: utf-8 -*-
 # Code by Ivan
-# site:github.com/yfgeek
+# Automatically follow a lot of Github users which copy from a fixed user
+# The first line of comments is English version
+# The second line of comments is Chinese version
+# They have the same meaning.Don't be confused.
+# Welcome to pull request
+# Enjoy.
+# Site:github.com/yfgeek
 
 import os
 import re
@@ -36,7 +42,7 @@ class Github(object):
     # sign up github
     # 方法登录网站
     def login(self):
-        print "正在获取获取authenticity_token"
+        print "Getting the authenticity_token"
         token = self.getUserToken(self.html)[0]
         loginparams = {
         'commit' : 'Sign in',
@@ -48,7 +54,12 @@ class Github(object):
         # post loginparams to login
         # post数据登录
         req = urllib2.Request( 'https://github.com/session', urllib.urlencode(loginparams), headers=self._getHeaders('https://github.com/login'))
-        resp = urllib2.urlopen(req)
+        try:
+            resp = urllib2.urlopen(req)
+        except Exception, e:
+            print "Retrying..."
+        else:
+            pass
         self.operate = self.opener.open(req)
         thePage = resp.read().decode("utf-8")
         # print the result of login
@@ -75,7 +86,12 @@ class Github(object):
         # post loginparams to login
         # post数据登录
         req = urllib2.Request( 'https://github.com/users/follow?target='+username, urllib.urlencode(loginparams), headers=self._getHeaders(''))
-        resp = urllib2.urlopen(req)
+        try:
+            resp = urllib2.urlopen(req)
+        except Exception, e:
+            print "Retrying..."
+        else:
+            pass
         self.operate = self.opener.open(req)
         thePage = resp.read().decode("utf-8")
         return thePage
@@ -85,14 +101,19 @@ class Github(object):
     def listFollow(self,page,copyusername):
         url = "http://github.com/" + copyusername + "?page="+ str(page) +"&tab=following"
         req = urllib2.Request(url,headers=self._getHeaders(''))
-        response = urllib2.urlopen(req)
+        try:
+            response = urllib2.urlopen(req)
+        except Exception, e:
+            print "Retrying..."
+        else:
+            pass
         self.opener.open(req)
         thePage = response.read()
         tokenlist = self.getUserToken(thePage)
         userlist = self.getUserList(thePage)
         for i in range(len(userlist)):
             time.sleep(1)
-            print "In page"+ str(page) +",following the user: " + userlist[i] + " Token：" + tokenlist[i]
+            print "In page "+ str(page) +", following the NO."+ str(i) +" user: " + userlist[i] + " Token：" + tokenlist[i]
             self.followUser(tokenlist[i],userlist[i])
 
 default_encoding = 'utf-8'
@@ -110,6 +131,6 @@ gt.login()
 
 # range 1,5 is the page of follower page
 # range内是页数
-for i in range(1,5):
+for i in range(1,100):
     gt.listFollow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
 print "Done."
