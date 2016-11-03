@@ -5,7 +5,7 @@ Try to edit it in the python code.
 
 ```python
 # new obejc parm1:username parm2:password
-gt = Github('username','password')
+gt = GithubFollow('username','password')
 
 # login
 gt.login()
@@ -17,6 +17,8 @@ for i in range(1,100):
 
 ```
 
-![](images/snapshot.jpg)
+![](images/snap.jpg)
 
-Enjoy!😁
+Drink some ☕️ and enjoy it!
+
+Have a nice day! 😁

@@ -10,11 +10,13 @@
 
 import os
 import re
-import sys, urllib, urllib2
+import sys
+import urllib
+import urllib2
 import time
 import cookielib
 
-class Github(object):
+class GithubFollow(object):
 
     # Initializaiton Constructor
     # 初始化
@@ -29,7 +31,7 @@ class Github(object):
 
     # Browse the page to get Cookie
     # 模拟浏览器行为，得到Cookie
-    def _getHeaders(self,referer):
+    def _get_headers(self,referer):
         headers = {}
         headers['User-Agent']='Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
         headers['Connection']='keep-alive'
@@ -43,7 +45,7 @@ class Github(object):
     # 方法登录网站
     def login(self):
         print "Getting the authenticity_token"
-        token = self.getUserToken(self.html)[0]
+        token = self.__get_user_token(self.html)[0]
         loginparams = {
         'commit' : 'Sign in',
         'utf8' : '%E2%9C%93',
@@ -53,7 +55,7 @@ class Github(object):
         }
         # post loginparams to login
         # post数据登录
-        req = urllib2.Request( 'https://github.com/session', urllib.urlencode(loginparams), headers=self._getHeaders('https://github.com/login'))
+        req = urllib2.Request( 'https://github.com/session', urllib.urlencode(loginparams), headers=self._get_headers('https://github.com/login'))
         try:
             resp = urllib2.urlopen(req)
         except Exception, e:
@@ -70,22 +72,22 @@ class Github(object):
 
     # Get the userToken
     # 获取Token
-    def getUserToken(self,part):
+    def __get_user_token(self,part):
         reg = re.compile('authenticity_token".*?value="(.*?)".*?>');
         result = re.findall(reg,part)
         return result
-    def getUserList(self,part):
+    def __get_user_list(self,part):
         reg = re.compile('link-gray.*?pl-1.*?>(.*?)</span>');
         result = re.findall(reg,part)
         return result
-    def followUser(self,token,username):
+    def __follow_user(self,token,username):
         loginparams = {
         'utf8' : '%E2%9C%93',
         'authenticity_token' : token
         }
         # post loginparams to login
         # post数据登录
-        req = urllib2.Request( 'https://github.com/users/follow?target='+username, urllib.urlencode(loginparams), headers=self._getHeaders(''))
+        req = urllib2.Request( 'https://github.com/users/follow?target='+username, urllib.urlencode(loginparams), headers=self._get_headers(''))
         try:
             resp = urllib2.urlopen(req)
         except Exception, e:
@@ -98,9 +100,9 @@ class Github(object):
 
     # get the userlist from a user who has a lot of followers
     # 获取复制用户的用户列表
-    def listFollow(self,page,copyusername):
+    def list_follow(self,page,copyusername):
         url = "http://github.com/" + copyusername + "?page="+ str(page) +"&tab=following"
-        req = urllib2.Request(url,headers=self._getHeaders(''))
+        req = urllib2.Request(url,headers=self._get_headers(''))
         try:
             response = urllib2.urlopen(req)
         except Exception, e:
@@ -109,28 +111,26 @@ class Github(object):
             pass
         self.opener.open(req)
         thePage = response.read()
-        tokenlist = self.getUserToken(thePage)
-        userlist = self.getUserList(thePage)
+        tokenlist = self.__get_user_token(thePage)
+        userlist = self.__get_user_list(thePage)
         for i in range(len(userlist)):
             time.sleep(1)
-            print "In page "+ str(page) +", following the NO."+ str(i) +" user: " + userlist[i] + " Token：" + tokenlist[i]
-            self.followUser(tokenlist[i],userlist[i])
+            print "\nIn the page "+ str(page) +", following the NO."+ str(i) +" user: " + userlist[i] + "\nToken：" + tokenlist[i]
+            self.__follow_user(tokenlist[i],userlist[i])
 
-default_encoding = 'utf-8'
-if sys.getdefaultencoding() != default_encoding:
-    reload(sys)
-    sys.setdefaultencoding(default_encoding)
-
-# new obejc parm1:username parm2:password
-#自动关注~ 用户名 密码
-gt = Github('username','password')
-
-# login
-# 登录
-gt.login()
-
-# range 1,100 is the page of follower page
-# range内是页数
-for i in range(1,100):
-    gt.listFollow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
-print "Done."
+if __name__ == '__main__':
+    default_encoding = 'utf-8'
+    if sys.getdefaultencoding() != default_encoding:
+        reload(sys)
+        sys.setdefaultencoding(default_encoding)
+        # new obejc parm1:username parm2:password
+        #自动关注~ 用户名 密码
+        gt = GithubFollow('username','password')
+        # login
+        # 登录
+        gt.login()
+        # range 1,100 is the page of follower page
+        # range内是页数
+        for i in range(1,100):
+            gt.list_follow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
+        print "Done."
