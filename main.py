@@ -123,7 +123,7 @@ if __name__ == '__main__':
     if sys.getdefaultencoding() != default_encoding:
         reload(sys)
         sys.setdefaultencoding(default_encoding)
-        # new obejc parm1:username parm2:password
+        # new object GithubFollow with parm1:username parm2:password
         #自动关注~ 用户名 密码
         gt = GithubFollow('username','password')
         # login

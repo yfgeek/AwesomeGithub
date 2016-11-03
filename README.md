@@ -4,7 +4,7 @@ Automatically follow a lot of Github users.
 Try to edit it in the python code.
 
 ```python
-# new obejc parm1:username parm2:password
+# new object GithubFollow with parm1:username parm2:password
 gt = GithubFollow('username','password')
 
 # login
