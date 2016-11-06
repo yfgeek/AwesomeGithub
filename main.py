@@ -56,12 +56,18 @@ class GithubFollow(object):
         # post loginparams to login
         # post数据登录
         req = urllib2.Request( 'https://github.com/session', urllib.urlencode(loginparams), headers=self._get_headers('https://github.com/login'))
+        tmp = 0
         try:
             resp = urllib2.urlopen(req)
-        except Exception, e:
-            print "Retrying..."
-        else:
-            pass
+        except :
+            if (tmp <100):
+                print 'Network conditions is not good.Reloading.'
+                self.login(self)
+            else:
+                print 'Fail to get it' + img['src']
+                pass
+                tmp = tmp +1
+
         self.operate = self.opener.open(req)
         thePage = resp.read().decode("utf-8")
         # print the result of login
@@ -131,6 +137,6 @@ if __name__ == '__main__':
         gt.login()
         # range 1,100 is the page of follower page
         # range内是页数
-        for i in range(1,100):
-            gt.list_follow(i,'yfgeek') #复制列表的人 The person who you want to copy his follower to yours
+        for i in range(100,10000):
+            gt.list_follow(i,'chongbenben') #复制列表的人 The person who you want to copy his follower to yours
         print "Done."
