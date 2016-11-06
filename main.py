@@ -98,6 +98,8 @@ class GithubFollow(object):
             resp = urllib2.urlopen(req)
         except Exception, e:
             print "Retrying..."
+            self.followUser(self,token,username)
+            pass
         else:
             pass
         self.operate = self.opener.open(req)
