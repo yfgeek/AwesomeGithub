@@ -98,7 +98,7 @@ class GithubFollow(object):
             resp = urllib2.urlopen(req)
         except Exception, e:
             print "Retrying..."
-            self.followUser(self,token,username)
+            self.__follow_user(self,token,username)
             pass
         else:
             pass
