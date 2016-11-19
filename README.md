@@ -47,10 +47,10 @@ Try to edit it in the file named `GithubFollow.py`.
 
 ```python
 ga = GithubAwesome('username','password')
-        # login
-        ga.login()
-        # get awesome repo param is the page you want to see
-        ga.get_awesome(1,20,50) # page 1 ,the output rule: min star 20 min or fork 20
+# login
+ga.login()
+# get awesome repo param is the page you want to see
+ga.get_awesome(1,20,50) # page 1 ,the output rule: min star 20 min or fork 20
 ```
 
 You will find a lot of awesome projects if you are following more than 1K github users.
