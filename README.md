@@ -1,5 +1,5 @@
 # AutoGithub
-This is a project written in python.
+This is a project written in python.Welcome to pull request or post issues.
 
 - [x] Automatically follow a lot of Github users.
 - [x] Automatically find and output the awesome repo your firends staring or forking in the dashborad.
@@ -62,7 +62,6 @@ ga.login()
 # get awesome repo param is the page you want to see
 ga.get_awesome(1,20,50) # page 1 ,the output rule: min star 20 min or fork 20
 ```
-
 
 You will find **a lot of awesome projects everyday** if you are following more than 1K github users.
 
