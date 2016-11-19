@@ -30,7 +30,16 @@ Drink some ☕️ and enjoy it!
 
 ## Github Awesome
 
-Automatically find and output the awesome repo your firends staring or forking in the dashborad.
+Automatically find and output the awesome repo your friends staring or forking in the dashborad.
+
+### RULE 
+If the vaule of star or fork in the repo your friends staring of forking is more than you set up before, it will output as an awesome project.
+
+🌰 E.g.
+```
+min star: 50
+min fork: 50
+```
 
 ![](images/awesomesnap.png)
 
