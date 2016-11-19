@@ -34,7 +34,7 @@ Drink some ☕️ and enjoy it!
 
 Automatically find and output the awesome repo your friends staring or forking in the dashborad.
 
-### RULE 
+### Rule 
 If the vaule of star or fork in the repo your friends staring of forking is more than you set up before, it will output as an awesome project.
 
 🌰 E.g.
@@ -64,7 +64,7 @@ ga.get_awesome(1,20,50) # page 1 ,the output rule: min star 20 min or fork 20
 ```
 
 
-You will find ** a lot of awesome projects everyday ** if you are following more than 1K github users.
+You will find **a lot of awesome projects everyday** if you are following more than 1K github users.
 
 Have a nice day! 😁
 
