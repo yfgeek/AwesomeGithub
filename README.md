@@ -8,6 +8,8 @@ This is a project written in python.
 ## Github Follow
 Automatically follow a lot of Github users.
 
+### Set up
+
 Try to edit it in the file named `GithubFollow.py`.
 
 ```python
@@ -43,6 +45,14 @@ min fork: 50
 
 ![](images/awesomesnap.png)
 
+### Set up
+
+To confirm you have installed beautifulsoup4.
+
+```
+pip install beautifulsoup4
+```
+
 Try to edit it in the file named `GithubFollow.py`.
 
 ```python
@@ -53,7 +63,8 @@ ga.login()
 ga.get_awesome(1,20,50) # page 1 ,the output rule: min star 20 min or fork 20
 ```
 
-You will find a lot of awesome projects if you are following more than 1K github users.
+
+You will find ** a lot of awesome projects everyday ** if you are following more than 1K github users.
 
 Have a nice day! 😁
 
