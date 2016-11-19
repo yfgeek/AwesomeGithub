@@ -3,7 +3,7 @@ This is a project written in python.
 
 - [x] Automatically follow a lot of Github users.
 - [x] Automatically find and output the awesome repo your firends staring or forking in the dashborad.
-- [ ] Automatically star awesome repo. // TODO
+- [ ] Automatically star some awesome repos with the customized rule. // TODO
  
 ## Github Follow
 Automatically follow a lot of Github users.
@@ -53,7 +53,7 @@ To confirm you have installed beautifulsoup4.
 pip install beautifulsoup4
 ```
 
-Try to edit it in the file named `GithubFollow.py`.
+Try to edit it in the file named `GithubAwesome.py`.
 
 ```python
 ga = GithubAwesome('username','password')
