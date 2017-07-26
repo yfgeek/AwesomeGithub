@@ -1,4 +1,4 @@
-## Github Awesome
+# Github Awesome
 
 Automatically find and output the awesome repo your friends staring or forking in the dashborad.
 
